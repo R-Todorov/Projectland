@@ -1,0 +1,20 @@
+{
+    "name": "Projectland",
+    "short_name": "Projectland - the ultimate project management tool",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "start.url" : ".",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "display": "standalone"
+}

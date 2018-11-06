@@ -1,0 +1,39 @@
+{
+  "name": "projectland",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "amazon-cognito-identity-js": "file:node_modules/amazon-cognito-identity-js",
+    "aphrodite": "^2.2.3",
+    "auth": "0.0.9",
+    "aws": "0.0.3-2",
+    "aws-amplify": "^1.1.9",
+    "aws-sdk": "^2.343.0",
+    "bootstrap": "^4.1.3",
+    "json-loader": "^0.5.7",
+    "react": "^16.3.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.5",
+    "reactstrap": "^6.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build s3://www.projectland --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E1T8I7POM902YY --paths '/*'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
