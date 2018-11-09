@@ -46,7 +46,7 @@ export default class NavMenu extends React.Component {
         <Navbar className={css(style.navBarStyle)} color="dark" expand="xl">
           <NavbarBrand href="/">
             <Link to="/">
-              <img id="logo" src="C:\Users\radi10\Desktop\CAD\projectland-client\public\projectland_logo.png" alt="Projectland logo" width="70" height="70"/>
+              <img id="logo" src="../../public/projectland_logo.png" alt="Projectland logo" width="70" height="70"/>
             </Link>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -64,7 +64,7 @@ export default class NavMenu extends React.Component {
               <Link to="/about" className={css(style.linkStyle)}>About</Link>
             </NavItem>
           </Nav>
-          <RightNav />         
+          <RightNav handleSignIn={this.props.handleSignIn} />         
         </Navbar>
         <Routes />
       </div>

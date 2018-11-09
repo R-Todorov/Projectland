@@ -1,48 +1,22 @@
-# NOTE: update this with your service name
-service: Projectland-api
+service: projectland-auth
 
-provider:
-  name: aws
-  runtime: nodejs8.10
-  stage: dev
-  region: eu-west-2
-
-# Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
   - serverless-offline
 
-# serverless-webpack configuration
-# Enable auto-packing of external modules
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
 
-functions:
-  authenticateUser:
-    handler: handler.authenticateUser
-    events:
-      - http:
-          path: /profile
-          method: get
-          cors: true
-      - cognitoUserPool:
-          pool: Projectland User Pool
-          trigger: PreSignUp
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: eu-west-2
 
-# resources:
-#   Resources: 
-#     usersTable:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: users
-#         AttributeDefinitions:
-#           - AttributeName: name
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: name
-#             KeyType: HASH
-#         ProvisionedThroughput:
-#           ReadCapacityUnits: 1
-#           WriteCapacityUnits: 1    
+functions:
+  clearCachedSession:
+    handler: handler.clearCachedSession
+  generateLoginEvent:
+    handler: handler.generateLoginEvent
