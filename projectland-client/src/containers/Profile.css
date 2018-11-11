@@ -1,3 +1,5 @@
-p {
-  background-color: blue;
+#home-container {
+  margin: 0 auto;
+  width: 600px;
+  background-color: white;
 }	

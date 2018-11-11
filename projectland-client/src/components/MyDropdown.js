@@ -44,15 +44,15 @@ export default class MyDropdown extends React.Component {
   //Renders a customised reactstrap dropdown menu
   render() {
     return (	
-      <Dropdown className={css(style.dropDownStyle)} isOpen={this.state.dropdownOpen} toggle={this.toggle} size="lg" color="" >
+      <Dropdown className={css(style.dropDownStyle)} isOpen={this.state.dropdownOpen} toggle={this.toggle} size="lg">
         <DropdownToggle caret className={css(style.fontSizeStyle, style.colorThemeStyle)}>
           Welcome, <strong className={css(style.fontSizeStyle, style.colorThemeStyle)}>{this.props.names + " "}</strong>
         </DropdownToggle>
         <DropdownMenu right className={css(style.fontSizeStyle, style.colorThemeStyle)}>
           <DropdownItem header className={css(style.fontSizeStyle)}>Profile</DropdownItem>
           <DropdownItem divider /> 
-          <DropdownItem className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Profile</DropdownItem>
-          <DropdownItem className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Projects</DropdownItem>
+          <DropdownItem tag={Link} to="/my_profile" className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Profile</DropdownItem>
+          <DropdownItem tag={Link} to="/my_projects" className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Projects</DropdownItem>
           <DropdownItem divider />           
           <DropdownItem className={css(style.fontSizeStyle, style.colorThemeStyle)}>Settings</DropdownItem>
           <DropdownItem divider />

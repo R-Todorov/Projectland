@@ -12,6 +12,6 @@ export default {
   },
   apiGateway: {
     REGION: 'eu-west-2',
-    URL: 'https://kcw4mnjh72.execute-api.eu-west-2.amazonaws.com/prod'
+    URL: 'https://of6mw3disk.execute-api.eu-west-2.amazonaws.com/prod'
   }
 };

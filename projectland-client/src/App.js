@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import NavMenu from './components/NavMenu.js';
-import { Link } from 'react-router-dom';
-import Amplify, { Auth, Hub } from 'aws-amplify';
-import { withOAuth } from 'aws-amplify-react';
 import awsConfig from './aws-config';
+import AWS from 'aws-sdk';
+import Amplify from 'aws-amplify';
+import { withOAuth } from 'aws-amplify-react';
 import './App.css';
-
+import NavMenu from './components/NavMenu.js';
 
 //OAuth configuration necessary for initiating 
 //the user authentication process
@@ -17,7 +16,7 @@ const OAuth = {
     responseType: 'code'
 };
 
-
+//Amplify service configuration
 Amplify.configure({
 
   Auth: {
@@ -37,7 +36,7 @@ Amplify.configure({
   API: {
   	endpoints: [ 
   	  {
-        name: "users", //API name
+        name: 'users', //API name
         endpoint: awsConfig.apiGateway.URL,
         region: awsConfig.apiGateway.REGION
       },
@@ -45,8 +44,7 @@ Amplify.configure({
   }
 });
 
-Hub.dispatch('auth', { event: 'signIn'}, 'Auth');
-
+//Entry point of the SPA
 class App extends Component {
 
   constructor(props) {
@@ -56,7 +54,9 @@ class App extends Component {
 
   render() {
     return (
-      <NavMenu handleSignIn={this.props.OAuthSignIn} />
+      <div style={{textAlign: 'center'}}>
+        <NavMenu handleSignIn={this.props.OAuthSignIn} />
+     </div>
     );
   }  
 }

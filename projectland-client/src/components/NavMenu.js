@@ -8,7 +8,7 @@ import RightNav from './RighNav.js'
 import './NavMenu.css';
 
 //CSS styles for customising existing reactstrap components
-const style = StyleSheet.create({
+const myStyles = StyleSheet.create({
 
   linkStyle: {
     display: 'inline-block',
@@ -40,28 +40,45 @@ const style = StyleSheet.create({
 
 //A custom react component representing a navigation menu 
 export default class NavMenu extends React.Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      logged: false
+    }
+  }
+
+
+  componentWillMount() {
+    this.setState({
+      newProp: 20,
+      blueProp: 30
+    })
+  }
+
   render() {
     return (
       <div>
-        <Navbar className={css(style.navBarStyle)} color="dark" expand="xl">
+        <Navbar className={css(myStyles.navBarStyle)} color="dark" expand="xl">
           <NavbarBrand href="/">
             <Link to="/">
-              <img id="logo" src="../../public/projectland_logo.png" alt="Projectland logo" width="70" height="70"/>
+              <img id="logo" src="./projectland_logo.png" alt="Projectland logo" width="70" height="70"/>
             </Link>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Nav justified pills horizontal="true"> 
             <NavItem>
-              <Link to="/" className={css(style.linkStyle)}>Home</Link>
+              <Link to="/" className={css(myStyles.linkStyle)}>Home</Link>
             </NavItem>
             <NavItem>
-               <Link to="/search_projects" className={css(style.linkStyle)}>Browse Projects</Link>
+               <Link to="/search_projects" className={css(myStyles.linkStyle)}>Browse Projects</Link>
             </NavItem>
             <NavItem>
-              <Link to="/search_users" className={css(style.linkStyle)}>Search Users</Link>
+              <Link to="/search_users" className={css(myStyles.linkStyle)}>Search Users</Link>
             </NavItem>
             <NavItem>
-              <Link to="/about" className={css(style.linkStyle)}>About</Link>
+              <Link to="/about" className={css(myStyles.linkStyle)}>About</Link>
             </NavItem>
           </Nav>
           <RightNav handleSignIn={this.props.handleSignIn} />         
