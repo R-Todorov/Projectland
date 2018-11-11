@@ -1,0 +1,8 @@
+{
+  "body": "{\"username\":\"radi\",\"name\":\"Radoslav\",\"surname\":\"Todorov\",\"role\":\"Developer\",\"email\":\"radi@gmail.com\",\"number\":\"018474894\",\"gender\":\"male\",\"join_date\":\"today\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

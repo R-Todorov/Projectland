@@ -73,7 +73,7 @@ export default class RightNav extends React.Component {
     this.signOut = this.signOut.bind(this);
     this.checkSessionValidity = this.checkSessionValidity.bind(this);
     this.establishSession = this.establishSession.bind(this);
-    this.formGreetingString = this.formGreetingString.bind(this);
+    this.formUserObject = this.formUserObject.bind(this);
     Hub.listen('auth', this, 'AuthListener');
   }
 
@@ -106,6 +106,11 @@ export default class RightNav extends React.Component {
     } 
   }
 
+  //Trigger a session validation function
+  componentWillMount() {
+    this.checkSessionValidity(); 
+  }
+
   //Establishes a new user session if a user has signed in successfully
   checkSessionValidity() { 
 
@@ -130,26 +135,26 @@ export default class RightNav extends React.Component {
     Auth.currentAuthenticatedUser()
     .then(data => {
         console.log(data);
-        this.setState({
-          loggedIn: true,
-          user: data.username,
-          userAttrs: data.attributes
-        })
-        this.formGreetingString();
+        this.formUserObject(data);
       })
     .catch(err => {
-        console.error(err);
+        console.log(err);
     });
   }
 
-  formGreetingString() {
-    let userAttrs = this.state.userAttrs;
-    let names = userAttrs.given_name + " " + userAttrs.family_name;
-    this.setState({names: names});
-  }
+  //Form a user object after a successfull login
+  formUserObject(data) {
+    let attrs = data.attributes;
 
-  componentWillMount() {
-    this.checkSessionValidity(); 
+    this.setState({
+      loggedIn: true,
+      user: {
+        username: data.username,
+        name: attrs.given_name,
+        surname: attrs.family_name,
+        attrs: attrs
+      }
+    });
   }
 
   //Conditionally render a Nav component with two authentication buttons
@@ -166,7 +171,7 @@ export default class RightNav extends React.Component {
     else {
 
       rightNav = <Nav justified>
-                   <MyDropdown names={this.state.names} logout={this.signOut} /> 
+                   <MyDropdown user={this.state.user} logout={this.signOut} /> 
                  </Nav>
     }
       return rightNav;

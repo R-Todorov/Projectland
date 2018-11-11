@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
+import { API } from "aws-amplify";
 import NavMenu from '../components/NavMenu.js';
 import MyDropdown from '../components/MyDropdown.js';
 
@@ -47,12 +48,6 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-
-    this.fetchUserDetails = this.fetchUserDetails.bind(this)
-  }
-
-  fetchUserDetails() {
-    //call API Gateway
   }
     
   render() {
@@ -61,6 +56,7 @@ export default class Profile extends Component {
         <div className={css(myStyles.formDiv)}>
           <Form>
             <FormGroup>
+              <h1>{this.props.params.username}</h1>
               <img style={{margin: '0px auto 10px auto', padding: '5px', border: '1px black solid'}} src="https://s3.eu-west-2.amazonaws.com/www.projectland/avatar.png" alt="avatar placeholder" width="104" height="100"/>
               <Input type="file" name="file" id="exampleFile"/>
             </FormGroup>
