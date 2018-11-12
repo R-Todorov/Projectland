@@ -36,7 +36,7 @@ Amplify.configure({
   API: {
   	endpoints: [ 
   	  {
-        name: 'users', //API name
+        name: awsConfig.apiGateway.NAME,
         endpoint: awsConfig.apiGateway.URL,
         region: awsConfig.apiGateway.REGION
       },
@@ -46,12 +46,6 @@ Amplify.configure({
 
 //Entry point of the SPA
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {initial: 0};
-  }
-
   render() {
     return (
       <div style={{textAlign: 'center'}}>

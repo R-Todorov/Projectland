@@ -40,23 +40,6 @@ const myStyles = StyleSheet.create({
 
 //A custom react component representing a navigation menu 
 export default class NavMenu extends React.Component {
-  
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      logged: false
-    }
-  }
-
-
-  componentWillMount() {
-    this.setState({
-      newProp: 20,
-      blueProp: 30
-    })
-  }
-
   render() {
     return (
       <div>

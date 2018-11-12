@@ -2,6 +2,7 @@ import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router-dom';
+import { API } from "aws-amplify";
 
 const style = StyleSheet.create({
 
@@ -44,7 +45,6 @@ export default class MyDropdown extends React.Component {
 
   //Renders a customised reactstrap dropdown menu
   render() {
-    alert("USER " + this.props.user.username);
     return (	
       <Dropdown className={css(style.dropDownStyle)} isOpen={this.state.dropdownOpen} toggle={this.toggle} size="lg">
         <DropdownToggle caret className={css(style.fontSizeStyle, style.colorThemeStyle)}>

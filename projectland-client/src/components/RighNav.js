@@ -39,14 +39,16 @@ const myStyles = StyleSheet.create({
       }
 })
 
+AWS.config.region = awsConfig.cognito.REGION;
+
 const USER_POOL_DATA = {
   UserPoolId: awsConfig.cognito.USER_POOL_ID,
-  ClientId: awsConfig.cognito.APP_CLIENT_ID
+  ClientId: awsConfig.cognito.APP_CLIENT_ID,
+  Region: awsConfig.cognito.Region
 };
 
-var userPool = new AmazonCognitoIdentity.CognitoUserPool(USER_POOL_DATA); 
+const userPool = new AmazonCognitoIdentity.CognitoUserPool(USER_POOL_DATA); 
 
-AWS.config.region = awsConfig.cognito.REGION;
 
 //AWS configuration for token retrieval and token exchange
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -64,23 +66,26 @@ export default class RightNav extends React.Component {
     
   constructor(props) {
     super(props)
+
     this.state = {
       loggedIn: false,
-      refreshWindow: false
     }
+
+    Hub.listen('auth', this, 'AuthListener');
 
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
     this.checkSessionValidity = this.checkSessionValidity.bind(this);
     this.establishSession = this.establishSession.bind(this);
     this.formUserObject = this.formUserObject.bind(this);
-    Hub.listen('auth', this, 'AuthListener');
   }
 
+  //Initiate sign in process
   signIn() {
-    this.props.handleSignIn().then(window.location.reload);
+    this.props.handleSignIn();
   }
 
+  //Redirect to sign-up page
   signUp() {
     window.location  = 'https://auth.projectland.ga/signup?response_type=code'
                        +'&client_id=228uq4urbevfa4jmgm6an45pl0'
@@ -98,7 +103,7 @@ export default class RightNav extends React.Component {
     switch (capsule.payload.event) {
     
       case 'signIn':
-          window.location.reload()
+          window.location.reload();
           break;
       case 'signOut':
           break;
@@ -120,23 +125,21 @@ export default class RightNav extends React.Component {
     if (user != null) {
       user.getSession(function(err, session) {
         if (err) {
-          alert(err);
+          console.log(err);
           return;
         }
-        valid = session.isValid();
-        console.log("Session validity " + valid);
+        valid = session != null;
       });
     }
-
+    console.log("valid session " + valid);
     if (valid) this.establishSession();
   } 
 
   establishSession() {
     Auth.currentAuthenticatedUser()
     .then(data => {
-        console.log(data);
         this.formUserObject(data);
-      })
+    })
     .catch(err => {
         console.log(err);
     });
@@ -161,6 +164,7 @@ export default class RightNav extends React.Component {
   //or a dropdown menu depending on whether the user is logged in
   render () {
     let rightNav;
+    //!this.state.loggedIn
     if (!this.state.loggedIn) {
       rightNav =
       <Nav justified>

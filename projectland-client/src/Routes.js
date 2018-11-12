@@ -12,7 +12,7 @@ export default () =>
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/search_projects" exact component={SearchProjects} />
-    <Route path="/profile/:username" exact component={Profile} />
     <Route path="/my_projects" exact component={UserProjects} />
+    <Route path="/profile/:username" exact component={Profile} />
     <Route component={PageNotFound} />
   </Switch>;
