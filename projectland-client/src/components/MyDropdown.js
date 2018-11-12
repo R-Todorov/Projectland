@@ -54,7 +54,7 @@ export default class MyDropdown extends React.Component {
           <DropdownItem header className={css(style.fontSizeStyle)}>Profile</DropdownItem>
           <DropdownItem divider /> 
           <DropdownItem tag={Link} to={"/profile/" + this.props.user.username} className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Profile</DropdownItem>
-          <DropdownItem tag={Link} to="/my_projects" className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Projects</DropdownItem>
+          <DropdownItem tag={Link} to={"/projects"} className={css(style.fontSizeStyle, style.colorThemeStyle)}>My Projects</DropdownItem>
           <DropdownItem divider />           
           <DropdownItem className={css(style.fontSizeStyle, style.colorThemeStyle)}>Settings</DropdownItem>
           <DropdownItem divider />

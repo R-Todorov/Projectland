@@ -38,8 +38,9 @@ Amplify.configure({
   	  {
         name: awsConfig.apiGateway.NAME,
         endpoint: awsConfig.apiGateway.URL,
-        region: awsConfig.apiGateway.REGION
-      },
+        region: awsConfig.apiGateway.REGION,
+        service: "lambda"
+      }
     ]
   }
 });

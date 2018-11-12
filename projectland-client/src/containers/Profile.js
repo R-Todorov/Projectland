@@ -3,15 +3,13 @@ import { Form, FormGroup, Label, Input, CustomInput, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import { API } from "aws-amplify";
-import NavMenu from '../components/NavMenu.js';
-import MyDropdown from '../components/MyDropdown.js';
-
 
 const myStyles = StyleSheet.create({
 
   formDiv: {
     width: '20%',
     margin: '20px auto',
+    textAlign: 'left',
     padding: '20px',
     backgroundColor: '#E4E8E8',
     borderRadius: '10px',
@@ -22,7 +20,7 @@ const myStyles = StyleSheet.create({
     marginTop: '15px',
     padding: '5px 0px',
     width: '265px',
-    height: '40px',
+    height: '5 0px',
     fontSize: '20px',
     color: 'white',
     backgroundColor: "#007bff",
@@ -41,7 +39,7 @@ const myStyles = StyleSheet.create({
   },
 
   inputStyle: {
-    fontSize: '15px',
+    fontSize: '17px',
     height: '30px',
     color: '#000'   
   },
@@ -91,7 +89,7 @@ export default class Profile extends React.Component {
   //user details
   async fetchUserData() {
     try {
-      let data = await API.get('projectland-dynamodb-prod', '/user-data');
+      let data = await API.get('prod-projectland-crud', '/user-details');
       this.setState({ 
         userAttrs: data.Item
       })
@@ -138,12 +136,10 @@ export default class Profile extends React.Component {
   
   async updateUserDetails() {
     try {
-      let data = API.post('projectland-dynamodb-prod', '/user-data', {
+      let data = API.put('prod-projectland-crud', '/user-details', {
         "statusCode": 200,
-        "headers": {
-          //"X-Requested-With": '*',
-          //"Access-Control-Allow-Headers": 'Content-Type',
-          "Access-Control-Allow-Origin": '*',
+        "headrs": {
+          "Access-Control-Allow-Origin": "*"
         },
         "body": this.state.userAttrs
       })
@@ -157,7 +153,6 @@ export default class Profile extends React.Component {
   render() {
     
     return (
-      <div style={{textAlign: 'left'}}>
         <div className={css(myStyles.formDiv)}>
           <Form>
             <FormGroup>
@@ -214,7 +209,6 @@ export default class Profile extends React.Component {
             <Button type="submit" name="submit" onClick={this.handleSubmit} className={css(myStyles.submitButt)}>Update details</Button>
           </Form>
         </div>
-      </div>
     );
   }
 }

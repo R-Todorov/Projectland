@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Button} from 'reactstrap';
+import { Link} from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 
 const style = StyleSheet.create({
@@ -33,8 +34,8 @@ export default class Home extends Component {
       <div className={css(style.mainDiv)}>
         <div className={css(style.optionsDiv)}>
           <h1>You aren't contributing to any projects  currently</h1>
-          <Button className={css(style.buttons)} color="primary">Create a new project</Button>
-          <Button className={css(style.buttons)} color="primary">Join an existing project</Button>
+          <Button className={css(style.buttons)} tag={Link} to="/projects/create">Create a new project</Button>
+          <Button className={css(style.buttons)} tag={Link} to="/projects/search">Join an existing project</Button>
         </div>  
       </div>
     );

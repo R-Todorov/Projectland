@@ -11,8 +11,8 @@ export default {
     BUCKET: 'www.projectland'
   },
   apiGateway: {
-    NAME: 'projectland-dynamodb-prod',
+    NAME: 'prod-projectland-crud',
     REGION: 'eu-west-2',
-    URL: 'https://eltooxshq3.execute-api.eu-west-2.amazonaws.com/prod'
+    URL: 'https://ixtlzo1frc.execute-api.eu-west-2.amazonaws.com/prod'
   }
 };
